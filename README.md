@@ -1,66 +1,85 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel LV5 – Upravljanje završnim i diplomskim radovima
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Ovaj projekt je implementacija zadatka LV5 u okviru kolegija **Napredno web programiranje**. Aplikacija je izrađena u Laravelu i omogućuje upravljanje korisnicima, njihovim ulogama, unos i prijavu na završne i diplomske radove.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🎯 Ključne funkcionalnosti
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- 🔐 **Autentikacija** (Laravel Breeze)
+- 👤 **Tri uloge korisnika**: admin, nastavnik, student
+- 🛠️ **Admin panel**: upravljanje korisnicima i njihovim ulogama
+- 📄 **Dodavanje radova** od strane nastavnika (na HR i EN jeziku)
+- 🧑‍🎓 **Student** može pregledati radove i prijaviti se na 5 radova (s prioritetima)
+- ✅ **Nastavnik** može prihvatiti jednog studenta po radu
+- 🌐 **Višejezičnost** (priprema za Laravel Localization)
+- ✨ Jednostavno sučelje s podrškom za tamni/svijetli prikaz (po izboru)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## ⚙️ Tehnologije
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- [Laravel](https://laravel.com/) 10.x
+- [Laravel Breeze](https://laravel.com/docs/starter-kits#laravel-breeze)
+- [Tailwind CSS](https://tailwindcss.com/)
+- PHP 8.x
+- MySQL 8.x
+- Vite, Alpine.js
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🚀 Instalacija
 
-## Laravel Sponsors
+```bash
+git clone https://github.com/patrikmakaj/NWP-LV5.git
+cd NWP-LV5
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+composer install
+cp .env.example .env
+php artisan key:generate
 
-### Premium Partners
+npm install && npm run dev
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+# Pokreni MySQL ako treba
+php artisan migrate
+php artisan serve
+```
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🧪 Testni korisnici (ako ih dodaš)
 
-## Code of Conduct
+| Uloga     | Email              | Lozinka |
+|-----------|--------------------|---------|
+| Admin     | admin@mail.hr      | lozinka |
+| Nastavnik | nastavnik@mail.hr  | lozinka |
+| Student   | student@mail.hr    | lozinka |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+> Uloge se ručno postavljaju u bazi preko `role` kolone (`admin`, `nastavnik`, `student`)
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 📁 Struktura direktorija
 
-## License
+```
+routes/web.php                 → Web rute (autentikacija, prijave, admin)
+app/Models/                   → User, Task, Application
+app/Http/Controllers/         → Auth, AdminController, TaskController, ApplicationController, TeacherPanelController
+resources/views/              → Blade prikazi za sve uloge
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## 📌 Napomena
+
+- `.env` datoteka nije uključena u repozitorij (koristi `.env.example`)
+- Laravel koristi Breeze, pa su sve osnovne auth rute već postavljene
+
+---
+
+## 👨‍💻 Autor
+
+Patrik Makaj  
+**Fakultet elektrotehnike, računarstva i informacijskih tehnologija Osijek**  
+Kolegij: Napredno web programiranje – LV5  
+2025.

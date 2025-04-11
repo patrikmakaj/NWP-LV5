@@ -1,0 +1,9 @@
+
+# Laravel
+/vendor
+/node_modules
+.env
+.phpunit.result.cache
+storage/*.key
+.idea
+.DS_Store
